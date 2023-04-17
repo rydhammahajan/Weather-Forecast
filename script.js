@@ -1,7 +1,6 @@
 {
     
     let searchBox = document.querySelector("input") ; 
-    console.log(searchBox) ;
     let cityName = document.querySelector(".city") ; 
     let countryName =  document.querySelector(".country") ;
     let temperature = document.querySelector(".temperature-celcius") ; 
@@ -19,14 +18,35 @@
     let forecastContainer = document.querySelector(".forecast-each-day")
     let todayDate = document.querySelector(".date") ;
     let clock = document.querySelector(".clock") ; 
-    let location = "Gurdaspur"
+    let main = document.querySelector("main") ; 
+    let aside = document.querySelector("aside") ;
+    let hamburger = document.querySelector(".hamburger-icon") ; 
+
+    let location = "Amritsar";
+    let mainDisplay = true ; 
+
+    var api_url ;
+    var data ;
 
     const weekday = ["Sunday" , "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday"]
 
-    var api_url ;
-    var data ; 
-
+    // Initial API Call when the page loads
     makeAPIcall() ;
+
+    hamburger.addEventListener("click" , function(){
+
+        console.log("Hello") ; 
+        if(mainDisplay === true){
+            main.style.display = "none" ;
+            aside.style.display = "block"
+            mainDisplay = false ; 
+        }else{
+            main.style.display = "block" ;
+            aside.style.display = "none"
+            mainDisplay = true ;
+        }
+    })
+    // Adding Event Listener to the Search Box
     searchBox.addEventListener("keyup" ,function(){
         location = searchBox.value ; 
         makeAPIcall() ;
@@ -34,8 +54,6 @@
     
     async function makeAPIcall() {
 
-
-        console.log("Hello") ;
         api_url = `https://api.weatherapi.com/v1/forecast.json?key=c01c5f188bb142f9846165125231304&q=${location}&days=8&aqi=yes&alerts=no`
       
         // Making an API call (request)
@@ -44,7 +62,7 @@
         // Parsing it to JSON format
         data = await response.json();
 
-        // console.log(data);
+        // Following function calls update the data on the webpage
         updateCityCountry() ; 
         updateCurrentTemperatureDetails();
         updateSunriseSunsetUV();
@@ -65,7 +83,6 @@
         pressure.innerText =  data["current"]["pressure_mb"] + " mb"; 
         visibility.innerText = data["current"]["vis_km"] + " km"; 
         humidity.innerText = data["current"]["humidity"] + "%";
-         
     }
 
     function updateSunriseSunsetUV(){
@@ -73,7 +90,6 @@
         sunrise.innerText = data["forecast"]["forecastday"][0]["astro"]["sunrise"] ;
         sunset.innerText = data["forecast"]["forecastday"][0]["astro"]["sunset"] ;
         uviValue.innerText = data["forecast"]["forecastday"][0]["day"]["uv"];
-
         if(uviValue.innerText < 3) {
             desc = "Low risk of UV rays";
         }else if(uviValue.innerText < 6) {
@@ -86,16 +102,13 @@
         }else{
             desc = "Extreme risk of UV rays";
         }
-
         uviDesc.innerText = desc ;
     }
 
     function updateHourlyWeather(){
-
         row1.innerHTML = "" ;
         row2.innerHTML = "" ;
         let hourArray = data["forecast"]["forecastday"][0]["hour"] ; 
-        console.log(hourArray) ;
         for (let i in  hourArray) {
 
             let hourElement = document.createElement("div") ; 
@@ -103,7 +116,6 @@
             let src = hourArray[i]["condition"]["icon"] ; 
             let temperature = hourArray[i]["temp_c"] ; 
             let am_pm = i<12? "am" : "pm" ; 
-            console.log(time) ;
             hourElement.innerHTML = 
             `
             <div class = "single-hour-detail d-flex flex-column py-2 px-3 justify-content-center align-items-center fs-5 bg-light border-radius">
@@ -116,14 +128,11 @@
             
             `
             if(i<12)row1.appendChild(hourElement) ;
-            else row2.appendChild(hourElement) ;
-            
+            else row2.appendChild(hourElement) ;  
         }
-
     }
 
     function updateForecast(){
-
         forecastContainer.innerHTML =  "" ;
         let forecastArray = data["forecast"]["forecastday"] ; 
 
@@ -133,15 +142,13 @@
 
         /*Setting up Current time*/
         clock.innerText = ((data["location"]["localtime"]).split(" "))[1] ;
-
         todayDate.innerText = dateObject ; 
                  
         for(let i=1 ; i<=7 ; i++) {
 
             let forecastElement = document.createElement("div") ;
-
             let forecastDate = forecastArray[i]["date"]
-            const d = new Date(forecastDate);
+            let d = new Date(forecastDate);
             let date = d.getDate();
             let day = weekday[d.getDay()]  ; 
             
@@ -151,13 +158,12 @@
             let maxTemp = forecastArray[i]["day"]["maxtemp_c"]
 
             forecastElement.innerHTML = 
-
             `
             <div class = "d-flex flex-column p-4 white-background border-radius ">
                 <span class = "fs-5 blue-color h1">${day}, ${date} </span>
                 <div class = "d-flex justify-content-between py-2 gap-2" >
                     <img src = ${forecastImageSrc} height = "50px">
-                    <span class = "fs-4 blue-color h1 ">${forecastWeather}</span>
+                    <span class = "fs-6 blue-color h1 ">${forecastWeather}</span>
                 </div>
                 <span class = "h1 fs-6">Temperature in Celcius: </span>
                 <div class = "blue-color">Min temp : ${minTemp}</div>
@@ -165,10 +171,8 @@
             </div>
             
             `
-
             forecastContainer.appendChild(forecastElement) ;
-
-
         }
     }
+
 }

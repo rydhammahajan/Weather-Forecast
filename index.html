@@ -16,11 +16,13 @@
 
 <body>
 
-    <div class = "container-fluid d-lg-flex flex-column flex-lg-row outer-container">
+    <div class = "container-fluid d-lg-flex  flex-lg-row outer-container">
+
+        <img src = "assets/hamburger.png" height = "50px" class = "hamburger-icon">
 
         <main class = "col-12 col-md-8 col-lg-9  p-4 ">
 
-            <nav class = "d-flex  flex-row justify-content-between position-relative gap-3">
+            <nav class = "d-flex flex-column-reverse flex-lg-row justify-content-between position-relative gap-3">
 
                 <div>
                     <span class = "city font-25 blue-color"></span> <br>
@@ -28,10 +30,9 @@
                     <span class = "country font-25 blue-color"></span>
                 </div>
 
-                <div class = "position-relative">
+                <div class = "position-relative search-box-container" width = "300px">
                     <input type = "text" placeholder="Search a city name....." class = "search-box bg-light px-2  justify-content-center"> 
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-
+                    <i class="fa-solid fa-magnifying-glass search-icon position-absolute"></i>
                 </div>
 
             </nav>
@@ -49,7 +50,7 @@
                     <div class = "position-relative ">
 
                         <span class = "temperature-celcius blue-color"></span>
-                        <img src = "celsius.png" height = "40px" class = "celcius">
+                        <img src = "assets/celsius.png" height = "40px" class = "celcius">
                         <div>
                             <span class = "fs-4 temperature-condition blue-color"></span>
                             <img src = "" class = "temperature-image" height = "60px">
@@ -57,19 +58,19 @@
                         
                     </div>
                     
-                    <div class = "d-flex justify-content-between gap-2">
+                    <div class = "d-flex justify-content-between gap-1">
 
-                        <div class = "d-flex flex-column justify-content-center align-items-center fs-5 other-temperature-properties text-light blue-background col-3  border-radius p-2">
+                        <div class = "d-flex flex-column justify-content-center align-items-center fs-6 other-temperature-properties text-light blue-background col-4  border-radius p-2">
                             Pressure
-                            <span class = "fs-4 h1 pressure-value text-center"></span>
+                            <span class = "fs-6 h1 pressure-value text-center"></span>
                         </div>
-                        <div  class = "d-flex flex-column justify-content-center align-items-center fs-5 other-temperature-properties blue-color green-background col-3  border-radius p-2">
+                        <div  class = "d-flex flex-column justify-content-center align-items-center fs-6 other-temperature-properties blue-color green-background col-4  border-radius p-2">
                             Visibility
-                            <span class = "fs-4 h1 visibility-value text-center"></span>
+                            <span class = "fs-6 h1 visibility-value text-center"></span>
                         </div >
-                        <div  class = "d-flex flex-column justify-content-center align-items-center  other-temperature-properties blue-color bg-light col-3  border-radius p-2 text-center">
+                        <div  class = "d-flex flex-column justify-content-center align-items-center  other-temperature-properties blue-color bg-light col-4  border-radius p-2 text-center fs-6">
                             Humidity
-                            <span class = "fs-4 h1 humidity-value"></span>
+                            <span class = "fs-6 h1 humidity-value"></span>
                         </div>
 
                     </div>
@@ -82,14 +83,14 @@
                         <div class = "d-flex justify-content-between">
                             
                             <div class = "col-5 d-flex">
-                                <img src = "sunrise.png" height = "80px">
+                                <img src = "assets/sunrise.png" height = "50px">
                                 <div class = " fs-6 text-light">
                                     Sunrise<br>
                                     <span class = "sunrise-time fs-6 h1"></span>
                                 </div>
                             </div>
                             <div  class =  "col-5 d-flex gap-2">
-                                <img src = "sunset.png" height = "50px" width = "50px" >
+                                <img src = "assets/sunset.png" height = "30px" width = "30px" >
                                 <div class = " fs-6 text-light">
                                     Sunset<br>
                                     <span class = "sunset-time fs-6 h1"></span>
@@ -99,13 +100,13 @@
                     </div>
 
                     <div class = "uv-details py-2 px-4 blue-background  border-radius">
-                        <img src = "sun.png" height = "80px">
+                        <img src = "assets/sun.png" height = "80px">
 
-                        <div class = "d-inline-block fs-2 text-light">
+                        <div class = "d-inline-block fs-5 h1 text-light">
                             <span class = "uvi-value"></span>
                             <span>UVI</span>
                         </div>
-                        <div class = "uvi-description fs-5 h1 text-light py-2">High risk from UV rays</div>
+                        <div class = "uvi-description fs-6 h1 text-light py-2">High risk from UV rays</div>
                     </div>
                 </div>
 
@@ -125,7 +126,7 @@
 
         </main>
 
-        <aside class = "col-12 col-md-4 col-lg-3">
+        <aside class = "col-12 col-md-4 col-lg-3 ">
 
             <div class = "aside-inner p-3 d-flex flex-column gap-5">
 
@@ -134,11 +135,11 @@
                     <div class = "date fs-6 blue-color"></div>
                 </div>
 
-                <div>
-                    <img class = "col-12 border-radius" src = "landscape5.jfif">
+                <div class = "text-center">
+                    <img class = "col-12 border-radius landscape-image" src = "assets/landscape.jfif">
                 </div>
 
-                <span class = "fs-1 h1 text-center blue-color">7 Days Forecast</span>
+                <span class = "fs-3 h1 text-center blue-color">7 Days Forecast</span>
 
                 <div class = "d-flex flex-column  gap-2 forecast-each-day">                
 
