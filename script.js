@@ -35,7 +35,6 @@
 
     hamburger.addEventListener("click" , function(){
 
-        console.log("Hello") ; 
         if(mainDisplay === true){
             main.style.display = "none" ;
             aside.style.display = "block"
@@ -135,6 +134,7 @@
     function updateForecast(){
         forecastContainer.innerHTML =  "" ;
         let forecastArray = data["forecast"]["forecastday"] ; 
+        
 
         /*Setting up current date*/
         const currentDate = forecastArray[0]["date"] ; 
