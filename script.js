@@ -52,8 +52,9 @@
     }) ;
     
     async function makeAPIcall() {
-
-        api_url = `https://api.weatherapi.com/v1/forecast.json?key=c01c5f188bb142f9846165125231304&q=${location}&days=8&aqi=yes&alerts=no`
+        const days = 10 ;
+        const key = "552c38ce4c29433da48165254233004" ; 
+        api_url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${location}&days=${days}&aqi=yes&alerts=no`
       
         // Making an API call (request)
         // and getting the response back
@@ -143,8 +144,8 @@
         /*Setting up Current time*/
         clock.innerText = ((data["location"]["localtime"]).split(" "))[1] ;
         todayDate.innerText = dateObject ; 
-                 
-        for(let i=1 ; i<=7 ; i++) {
+        console.log(forecastArray.length)
+        for(let i=1 ; i<forecastArray.length; i++) {
 
             let forecastElement = document.createElement("div") ;
             let forecastDate = forecastArray[i]["date"]
